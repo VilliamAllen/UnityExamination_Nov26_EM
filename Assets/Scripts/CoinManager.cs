@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using TMPro;
 
 public class CoinManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class CoinManager : MonoBehaviour
     public int totalCoins = 5;
     public TextMeshProUGUI coinText;
     public AudioSource coinAudioSource;
-    public AudioClip coinPickupSound;
+    public AudioResource coinPickupSound;
 
     void Awake() { instance = this; }
     void Start() { UpdateUI(); }
@@ -19,7 +20,8 @@ public class CoinManager : MonoBehaviour
         UpdateUI();
         if (coinAudioSource != null && coinPickupSound != null)
         {
-            coinAudioSource.PlayOneShot(coinPickupSound);
+            coinAudioSource.resource = coinPickupSound;
+            coinAudioSource.Play();
         }
     }
 
